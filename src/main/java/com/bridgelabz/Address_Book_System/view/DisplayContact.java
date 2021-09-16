@@ -10,7 +10,7 @@ public class DisplayContact {
 		Scanner sc = new Scanner(System.in);
 		int n=0;
 		ContactOperation operation = new ContactOperation();
-			while(n != 4) {
+			while(n != 5) {
 				System.out.println("\nEnter Your Choice \n1. Add Contact Details \n2. Display Contact Details \n3. Edit Contact Details \n4. Delete Contact Details \n5. Exit");
 				n = sc.nextInt();
 				operation.performUserSelection(n);

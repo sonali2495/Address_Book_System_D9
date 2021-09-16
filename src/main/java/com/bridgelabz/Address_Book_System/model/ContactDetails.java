@@ -72,7 +72,7 @@ public class ContactDetails {
 
 	@Override
 	public String toString() {
-		return "ContactDetails [First Name=" + firstName + ", Last Name=" + lastName + ", Email=" + email + ", Address="
+		return "Contact Details [First Name=" + firstName + ", Last Name=" + lastName + ", Email=" + email + ", Address="
 				+ address + ", City=" + city + ", State=" + state + ", Zip Code=" + zip + ", Phone Number=" + phoneNumber
 				+ "]";
 	}

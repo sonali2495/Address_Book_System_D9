@@ -52,7 +52,7 @@ public class ContactOperation implements ContactOperationInterface {
 		Iterator<ContactDetails> iterator = list.listIterator();
 		while(iterator.hasNext()){
 			ContactDetails user = iterator.next();
-			System.out.println("Enter the first name for which you want make the changes: ");
+			System.out.println("Enter the Contact's first name for which you want make the changes: ");
 			Scanner sc = new Scanner(System.in);
 			String fname = sc.next();
 			if(fname.equals(user.getFirstName())) {
@@ -61,11 +61,12 @@ public class ContactOperation implements ContactOperationInterface {
 				updateContacts(user, sc, n);	
 			}
 			else 
-				System.out.println("Name not present in the Contact List!");
+				System.out.println("Name not Present in the Contact List!");
 		}
 	}
 
 	private void updateContacts(ContactDetails user, Scanner sc, int n) {
+		int flag=0;
 		String fname;
 		switch(n) {
 			case 1:
@@ -109,25 +110,70 @@ public class ContactOperation implements ContactOperationInterface {
 				user.setPhoneNumber(number);
 				break;
 			default:
-				System.out.println("Default");
+				System.out.println("Invalid Input! \nPlease provide Valid Input!");
+				flag = 1;
+				break;
+			
 		}
+		if(flag == 0)
+			System.out.println("Contact detail Updated successfully!");
+	}
+	
+	public void deleteContact() {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Enter the first name for which you want to delete the contact details: ");
+			String fname = sc.next();
+			for(int i=0; i<list.size(); i++) {
+				if(fname.equals(list.get(i).firstName)) {
+					list.remove(list.get(i));
+					System.out.println("Contact detail deleted successfully!");
+				}
+			}
 	}
 	
 	public void performUserSelection(int n) {
-
 		switch (n) {
 			case 1:
 				addContact();
 				break;
 			case 2:
-				getDetails();
+				try {
+					if(list.get(0) != null) 
+						getDetails();
+					else
+						break;
+				} catch(IndexOutOfBoundsException e) {
+					System.out.println(e);
+					System.out.println("Contact List is not Present!");
+				}
 				break;
 			case 3:
-				editContact();
+				try {
+					if(list.get(0) != null) 
+						editContact();
+					else
+						break;
+				} catch(IndexOutOfBoundsException e) {
+					System.out.println(e);
+					System.out.println("Contact List is not Present!");
+				}
 				break;
 			case 4:
+				try {
+					if(list.get(0) != null) 
+						deleteContact();
+					else
+						break;
+				} catch(IndexOutOfBoundsException e) {
+					System.out.println(e);
+					System.out.println("Contact List is not Present!");
+				}
 				break;
 			case 5:
+				System.out.println("Terminated!!");
+				break;
+			default:
+				System.out.println("Invalid Input! \nPlease provide Valid Input!");
 				break;
 		}
 	}
